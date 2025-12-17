@@ -144,3 +144,9 @@ STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'authorization',
+    'content-type',
+]
+
+CSRF_TRUSTED_ORIGINS = ["https://notes-app-jade-nine-93.vercel.app"]
