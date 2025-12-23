@@ -1,0 +1,64 @@
+/* Toast overlay container - fixed position so it doesn't affect page layout */
+.toast-container {
+  /* Fixed position: stays in place even when scrolling */
+  position: fixed;
+  /* Position at bottom-right corner */
+  bottom: 30px;
+  right: 30px;
+  /* High z-index to appear above other content */
+  z-index: 9999;
+  /* Smooth slide-in animation */
+  animation: slideIn 0.3s ease-out;
+}
+
+/* The actual toast message box */
+.toast-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 250px;
+}
+
+/* Success checkmark icon */
+.toast-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Toast text content */
+.toast-text {
+  flex: 1;
+}
+
+/* Slide-in animation from right */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive: adjust position on mobile */
+@media (max-width: 600px) {
+  .toast-container {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+  }
+  
+  .toast-message {
+    min-width: unset;
+    width: 100%;
+  }
+}
