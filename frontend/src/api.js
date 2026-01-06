@@ -16,26 +16,18 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 )
 
-// Response interceptor to handle session expiry
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        // Handle 401 Unauthorized errors (session expired)
+        
         if (error.response && error.response.status === 401) {
-            // Check if this is not a login/register request
             const isAuthRequest = error.config.url.includes('/token') || 
                                   error.config.url.includes('/register');
             
             if (!isAuthRequest) {
-                // Clear tokens
                 localStorage.removeItem(ACCESS_TOKEN);
                 localStorage.removeItem(REFRESH_TOKEN);
-                
-                // Redirect to login with a message
-                // Store a flag in session storage to show message on login page
                 sessionStorage.setItem('sessionExpired', 'true');
-                
-                // Redirect to login
                 window.location.href = '/login';
             }
         }
